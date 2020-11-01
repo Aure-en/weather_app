@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AlgoliaPlaces from 'algolia-places-react';
 
-function InputSearch() {
+function InputSearch({ getLocation }) {
 
   const [city, setCity] = useState('')
   const [country, setCountry] = useState('')
   const [lat, setLat] = useState('')
   const [lng, setLng] = useState('')
+
+  useEffect(() => getLocation(city, country, lat, lng))
 
   return (
     <AlgoliaPlaces

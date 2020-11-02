@@ -1,14 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import AlgoliaPlaces from 'algolia-places-react';
+
+const initialState = {
+  city: '',
+  country: '',
+  countryCode: '',
+  lat: '',
+  lng: ''
+}
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'update':
+      return {
+        city: action.location.city,
+        country: action.location.country,
+        countryCode: action.location.countryCode,
+        lat: action.location.lat,
+        lng: action.location.lng
+      }
+    default: return state
+  }
+}
 
 function InputSearch({ getLocation }) {
 
-  const [city, setCity] = useState('')
-  const [country, setCountry] = useState('')
-  const [lat, setLat] = useState('')
-  const [lng, setLng] = useState('')
+  const [location, dispatch] = useReducer(reducer, initialState)
 
-  useEffect(() => getLocation(city, country, lat, lng))
+  const { city, country, countryCode, lat, lng } = location
+
+  useEffect(() => getLocation(city, country, countryCode, lat, lng), [city, country, countryCode, lat, lng, location])
 
   return (
     <AlgoliaPlaces
@@ -21,10 +42,16 @@ function InputSearch({ getLocation }) {
       }}
  
       onChange={({ query, rawAnswer, suggestion, suggestionIndex }) => {
-        setCity(suggestion.name)
-        setCountry(suggestion.country)
-        setLat(suggestion.latlng.lat)
-        setLng(suggestion.latlng.lng)
+        dispatch({
+          type: 'update',
+          location: {
+            city: suggestion.name,
+            country: suggestion.country,
+            countryCode: suggestion.countryCode,
+            lat: suggestion.latlng.lat,
+            lng: suggestion.latlng.lng
+          }
+        })
       }}
     />
   )

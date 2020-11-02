@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import Overview from './Overview'
 
-function Forecast({ city, country, lat, lng }) {
+function Forecast({ city, country, countryCode, lat, lng, units = 'imperial' }) {
+
+  const [data, setData] = useState({})
+  // Units can be imperial (Fahrenheit, m/h) or metric (Celsius, m/s)
+
+  useEffect(() => {
+    if (!city) return
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&units=${units}&appid=eb7ce88a5d6bebe42b30615977a74e6a`)
+      .then(response => response.json())
+      .then(response => {
+        console.log(response)
+        setData(response)
+      })
+      .catch(error => console.log(error))
+  }, [city, country, countryCode, lat, lng, units])
+
   return (
-    <div>
-      <h2>City - {city}</h2>
-      <h2>Country - {country}</h2>
-      <h2>Lat - {lat}</h2>
-      <h2>Lng - {lng}</h2>
-    </div>
+    <>
+    <Overview city={city} country={country}/>
+    </>
   )
 }
 

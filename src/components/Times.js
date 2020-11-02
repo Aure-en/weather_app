@@ -1,10 +1,10 @@
 import React from 'react'
 import TimesBtn from './TimesBtn';
 
-function Times() {
+function Times({ setDisplay, data }) {
 
   const now = new Date();
-  const nextDays = [0, 1, 2, 3, 4, 5, 6]
+  const nextDays = [0, 1, 2, 3, 4, 5, 6, 7]
   const nextHours = (() => {
     const hours = []
     let hour = now.getHours();
@@ -12,7 +12,8 @@ function Times() {
       hour -= 1
     }
     hours.push(hour)
-    while (hour <= 24) {
+    while (hours.length < 8) {
+      if (hour === 24) hour = 0
       hours.push(hour+=3)
     }
     return hours
@@ -20,15 +21,32 @@ function Times() {
 
   return (
     <div>
+
       <ul>
-        {
-          nextDays.map(day => <li key={`date-${day}`}><TimesBtn timeProp={(now.getDay() + day) % 7} type="date" /></li>)
+       {
+          nextHours.map((hour, index) =>
+            <li
+              key={`hourly-${index * 3}`}
+              id={`hourly-${index * 3}`}
+              onClick={(
+                () => setDisplay(data.hourly[index * 3])
+              )}>
+                <TimesBtn timeProp={hour} type="hour" />
+            </li>)
         }
       </ul>
 
       <ul>
-       {
-          nextHours.map(hour => <li key={`hours-${hour}`}><TimesBtn timeProp={hour} type="hour" /></li>)
+        {
+          nextDays.map(day =>
+            <li
+              key={`daily-${day}`}
+              id={`daily-${day}`}
+              onClick={(
+                () => setDisplay(data.daily[day])
+              )}>
+                <TimesBtn timeProp={(now.getDay() + day) % 7} type="date" />
+            </li>)
         }
       </ul>
 

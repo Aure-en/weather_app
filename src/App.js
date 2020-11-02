@@ -2,7 +2,6 @@ import React, { useReducer } from 'react'
 import InputSearch from './components/InputSearch'
 import Image from './components/Image'
 import Forecast from './components/Forecast'
-import Times from './components/Times'
 
 const initialState = {
   city: '',
@@ -51,7 +50,6 @@ function App() {
       <div className="content">
         <InputSearch getLocation={getLocation}/>
         <Forecast city={city} country={country} countryCode={countryCode} lat={lat} lng={lng}/>
-        <Times />
       </div>
     </div>
   );

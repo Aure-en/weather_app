@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Overview from './Overview'
 import Times from './Times'
+import keys from '../config'
 
 function Forecast({ city, country, countryCode, lat, lng, units = 'imperial' }) {
 
@@ -10,7 +11,7 @@ function Forecast({ city, country, countryCode, lat, lng, units = 'imperial' }) 
 
   useEffect(() => {
     if (!city) return
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&units=${units}&appid=eb7ce88a5d6bebe42b30615977a74e6a`)
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&units=${units}&appid=${keys.openWeatherMap}`)
       .then(response => response.json())
       .then(response => {
         console.log(response)

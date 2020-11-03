@@ -1,7 +1,7 @@
 import React from 'react'
 import TimesBtn from './TimesBtn';
 
-function Times({ setDisplay, data }) {
+function Times({ setDisplay, data, getWeather }) {
 
   const now = new Date();
   const nextDays = [0, 1, 2, 3, 4, 5, 6, 7]
@@ -29,7 +29,10 @@ function Times({ setDisplay, data }) {
               key={`hourly-${index * 3}`}
               id={`hourly-${index * 3}`}
               onClick={(
-                () => setDisplay(data.hourly[index * 3])
+                () => {
+                  setDisplay(data.hourly[index * 3])
+                  getWeather(data.hourly[index * 3].weather[0].description)
+                }          
               )}>
                 <TimesBtn timeProp={hour} type="hour" />
             </li>)
@@ -43,7 +46,10 @@ function Times({ setDisplay, data }) {
               key={`daily-${day}`}
               id={`daily-${day}`}
               onClick={(
-                () => setDisplay(data.daily[day])
+                () => {
+                  setDisplay(data.daily[day])
+                  getWeather(data.daily[day].weather[0].description)
+                }
               )}>
                 <TimesBtn timeProp={(now.getDay() + day) % 7} type="date" />
             </li>)

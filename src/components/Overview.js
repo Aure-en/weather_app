@@ -8,11 +8,13 @@ function Overview({ city, country, display, units }) {
   const temp = display.temp
   const humidity = display.humidity
   const wind = display.wind_speed
+  const date = new Date(display.dt * 1000)
 
   return (
     <div>
       <div className="error"></div>
       <h1>{city}, {country}</h1>
+      <h2>{convertDay(date.getDay())}, {convertMonth(date.getMonth())} {date.getDate()}, {date.getFullYear()}</h2>
       <div className="forecast">
         <img src={`http://openweathermap.org/img/w/${icon}.png`} alt='Icon representing the weather'/>
         <div>{main}</div>
@@ -33,6 +35,16 @@ function Overview({ city, country, display, units }) {
       </div>
     </div>
   )
+}
+
+const convertDay = (date) => {
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thuesday', 'Friday', 'Saturday', 'Sunday']
+  return days[date]
+}
+
+const convertMonth = (date) => {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  return months[date]
 }
 
 export default Overview

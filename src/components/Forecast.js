@@ -3,7 +3,7 @@ import Overview from './Overview'
 import Times from './Times'
 import keys from '../config'
 
-function Forecast({ city, country, countryCode, lat, lng, units = 'imperial' }) {
+function Forecast({ city, country, countryCode, lat, lng, getWeather, units = 'imperial' }) {
 
   const [data, setData] = useState({})
   // Units can be imperial (Fahrenheit, m/h) or metric (Celsius, m/s)
@@ -18,7 +18,10 @@ function Forecast({ city, country, countryCode, lat, lng, units = 'imperial' }) 
         setData(response)
         return response
       })
-      .then(response => setDisplay(response.hourly[0]))
+      .then(response => {
+        setDisplay(response.hourly[0])
+        getWeather(response.hourly[0].weather[0].description)
+      })
       .catch(error => console.log(error))
     }, [city, country, countryCode, lat, lng, units])
 
@@ -33,7 +36,7 @@ function Forecast({ city, country, countryCode, lat, lng, units = 'imperial' }) 
           units={units}
         />
       }
-      <Times setDisplay={setDisplay} data={data}/>
+      <Times setDisplay={setDisplay} getWeather={getWeather} data={data}/>
       <button onClick={() => console.log(display)}>Test</button>
     </div>
   )

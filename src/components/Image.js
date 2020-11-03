@@ -10,7 +10,7 @@ function Image( { description = 'sky' }) {
     fetch(`https://api.unsplash.com/photos/random?query=${encodedDescription}&client_id=${keys.unsplash}`)
       .then(response => response.json())
       .then(response => setImage(response))
-  }, [])
+  }, [description])
 
   return (
     <div>

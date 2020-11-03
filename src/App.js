@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useState } from 'react'
 import InputSearch from './components/InputSearch'
 import Image from './components/Image'
 import Forecast from './components/Forecast'
@@ -28,6 +28,7 @@ const reducer = (state, action) => {
 function App() {
 
   const [location, dispatch] = useReducer(reducer, initialState)
+  const [weather, setWeather] = useState('')
 
   const getLocation = (city, country, countryCode, lat, lng) => {
     dispatch({
@@ -42,14 +43,18 @@ function App() {
     })
   }
 
+  const getWeather = (description) => {
+    setWeather(description)
+  }
+
   const { city, country, countryCode, lat, lng } = location
 
   return (
     <div className="App">
-      <Image />
+      <Image description={weather}/>
       <div className="content">
         <InputSearch getLocation={getLocation}/>
-        <Forecast city={city} country={country} countryCode={countryCode} lat={lat} lng={lng}/>
+        <Forecast city={city} country={country} countryCode={countryCode} lat={lat} lng={lng} getWeather={getWeather}/>
       </div>
     </div>
   );

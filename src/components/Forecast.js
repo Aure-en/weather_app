@@ -16,9 +16,6 @@ function Forecast({ city, country, countryCode, lat, lng, getWeather, units = 'i
       .then(response => {
         console.log(response)
         setData(response)
-        return response
-      })
-      .then(response => {
         setDisplay(response.hourly[0])
         getWeather(response.hourly[0].weather[0].main)
       })

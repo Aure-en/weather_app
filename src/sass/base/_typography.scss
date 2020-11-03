@@ -81,3 +81,13 @@ button {
 .forecast__temp--max {
   font-size: 0.875rem;
 }
+
+.units {
+  color: rgba($color-primary, .85);
+  font-size: 0.8125rem;
+}
+
+.units input[type="radio"]:checked + label {
+  color: darken($color-secondary, 10);
+  font-weight: 400;
+}

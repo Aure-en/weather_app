@@ -1,0 +1,16 @@
+.units {
+  position: absolute;
+  bottom: .75rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.units input[type="radio"] {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.units label {
+  cursor: pointer;
+}

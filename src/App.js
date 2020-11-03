@@ -2,6 +2,7 @@ import React, { useReducer, useState } from 'react'
 import InputSearch from './components/InputSearch'
 import Image from './components/Image'
 import Forecast from './components/Forecast'
+import './sass/main.scss'
 
 const initialState = {
   city: '',
@@ -28,7 +29,7 @@ const reducer = (state, action) => {
 function App() {
 
   const [location, dispatch] = useReducer(reducer, initialState)
-  const [weather, setWeather] = useState('')
+  const [weather, setWeather] = useState('sky')
 
   const getLocation = (city, country, countryCode, lat, lng) => {
     dispatch({
@@ -51,10 +52,16 @@ function App() {
 
   return (
     <div className="App">
-      <Image description={weather}/>
       <div className="content">
-        <InputSearch getLocation={getLocation}/>
-        <Forecast city={city} country={country} countryCode={countryCode} lat={lat} lng={lng} getWeather={getWeather}/>
+        <main className="main">
+          <header>
+            <div className="heading">Through the window</div>
+            <h1>Weather</h1>
+          </header>
+          <InputSearch getLocation={getLocation}/>
+          <Forecast city={city} country={country} countryCode={countryCode} lat={lat} lng={lng} getWeather={getWeather}/>
+        </main>
+        <Image description={weather}/>
       </div>
     </div>
   );

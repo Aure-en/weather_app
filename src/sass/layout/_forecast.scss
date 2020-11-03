@@ -1,0 +1,15 @@
+.forecast__heading {
+  padding: 1rem 0;
+}
+
+.forecast__main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-right: 1rem;
+}
+
+.forecast__temp {
+  display: flex;
+  flex-direction: column;
+}

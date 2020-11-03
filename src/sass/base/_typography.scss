@@ -1,0 +1,83 @@
+body {
+  font-family: $font-primary;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 2.75rem;
+  text-indent: 2rem;
+  font-family: $font-secondary;
+  line-height: .55;
+  position: relative;
+  left: 1rem;
+  padding-bottom: 1rem;
+}
+
+h2 {
+  font-weight: 400;
+}
+
+h2, h3 {
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.125rem;
+}
+
+button {
+  font-family: $font-primary;
+  font-weight: 300;
+
+  &:hover,
+  &:focus {
+    color: darken($color-secondary, 15);
+    font-weight: 400;
+  }
+}
+
+.heading {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: $color-secondary;
+}
+
+.forecast__description {
+  text-transform: capitalize;
+  text-align: center;
+  padding-bottom: .5rem;
+  font-size: 0.875rem;
+  color: darken($color-secondary, 15);
+}
+
+.forecast__details {
+  font-size: 0.875rem;
+}
+
+.details {
+  text-transform: uppercase;
+  color: darken($color-secondary, 15);
+  letter-spacing: -.5px;
+  font-size: 0.9375rem;
+}
+
+.forecast__temp--main {
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.forecast__temp--min {
+  padding-right: 1rem;
+  color: $color-quaternary;
+}
+
+.forecast__temp--max {
+  color: $color-secondary;
+}
+
+.forecast__temp--min,
+.forecast__temp--max {
+  font-size: 0.875rem;
+}

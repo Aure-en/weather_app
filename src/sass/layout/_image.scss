@@ -1,0 +1,16 @@
+.image {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: none;
+
+  @media all and (min-width: 576px) {
+    display: block;
+  }
+}
+
+.image > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

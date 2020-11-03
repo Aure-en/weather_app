@@ -33,7 +33,7 @@ function InputSearch({ getLocation }) {
 
   return (
     <AlgoliaPlaces
-      placeholder='Write an address here'
+      placeholder="Write a city name here"
  
       options={{
         appId: 'plCIL43TO1Z4',

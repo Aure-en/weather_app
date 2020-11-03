@@ -20,7 +20,7 @@ function Forecast({ city, country, countryCode, lat, lng, getWeather, units = 'i
       })
       .then(response => {
         setDisplay(response.hourly[0])
-        getWeather(response.hourly[0].weather[0].description)
+        getWeather(response.hourly[0].weather[0].main)
       })
       .catch(error => console.log(error))
     }, [city, country, countryCode, lat, lng, units])
@@ -37,7 +37,6 @@ function Forecast({ city, country, countryCode, lat, lng, getWeather, units = 'i
         />
       }
       <Times setDisplay={setDisplay} getWeather={getWeather} data={data}/>
-      <button onClick={() => console.log(display)}>Test</button>
     </div>
   )
 }

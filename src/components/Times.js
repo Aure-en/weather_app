@@ -31,7 +31,7 @@ function Times({ setDisplay, data, getWeather }) {
               onClick={(
                 () => {
                   setDisplay(data.hourly[index * 3])
-                  getWeather(data.hourly[index * 3].weather[0].main)
+                  getWeather(data.hourly[index * 3])
                 }          
               )}>
                 <TimesBtn timeProp={hour} type="hour" />
@@ -48,7 +48,7 @@ function Times({ setDisplay, data, getWeather }) {
               onClick={(
                 () => {
                   setDisplay(data.daily[day])
-                  getWeather(data.daily[day].weather[0].main)
+                  getWeather(data.daily[day])
                 }
               )}>
                 <TimesBtn timeProp={(now.getDay() + day) % 7} type="date" />

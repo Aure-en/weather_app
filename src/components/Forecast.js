@@ -14,10 +14,9 @@ function Forecast({ city, country, countryCode, lat, lng, getWeather, units = 'i
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&units=${units}&appid=${keys.openWeatherMap}`)
       .then(response => response.json())
       .then(response => {
-        console.log(response)
         setData(response)
         setDisplay(response.hourly[0])
-        getWeather(response.hourly[0].weather[0].main)
+        getWeather(response.hourly[0])
       })
       .catch(error => console.log(error))
     }, [city, country, countryCode, lat, lng, units])

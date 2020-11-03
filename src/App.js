@@ -29,7 +29,7 @@ const reducer = (state, action) => {
 function App() {
 
   const [location, dispatch] = useReducer(reducer, initialState)
-  const [weather, setWeather] = useState('sky')
+  const [weather, setWeather] = useState({ weather: [{ description: 'sky' }]})
 
   const getLocation = (city, country, countryCode, lat, lng) => {
     dispatch({

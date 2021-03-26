@@ -13,9 +13,7 @@ function TimesBtn({ timeProp, type }) {
   }, [])
 
   return (
-    <div>
       <button type="button">{time}</button>
-    </div>
   )
 }
 

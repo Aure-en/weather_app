@@ -4,7 +4,7 @@ import keys from '../config'
 function Image( { description } ) {
 
   const [image, setImage] = useState({})
-  const [imageNumber, setImageNumber] = useState(Math.floor(Math.random() * 19))
+  const [imageNumber, setImageNumber] = useState(0)
   const encodedDescription = encodeURIComponent(`${description.weather[0].description}`)
 
   useEffect(() => {
@@ -12,7 +12,7 @@ function Image( { description } ) {
       .then(response => response.json())
       .then(response => { 
         setImage(response)
-        setImageNumber(Math.floor(Math.random() * 19))
+        setImageNumber(0)
       })
   }, [description])
 

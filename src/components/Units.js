@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 function Units( { changeUnits }) {
 
-  const [checked, setChecked] = useState('imperial')
+  const [checked, setChecked] = useState('metric')
 
   return (
     <div className="units">

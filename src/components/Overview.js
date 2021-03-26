@@ -41,9 +41,9 @@ function Overview({ city, country, display, units }) {
         <div className="forecast__description">{main} - {description}</div>
 
         <div className="forecast__details">
-          <div><span className="details">Precipitation:</span> {(precipitation * 100).toFixed(0)}%</div>
-          <div><span className="details">Humidity:</span> {humidity}%</div>
-          <div><span className="details">Wind:</span> {wind}{ units === 'imperial' ? 'm/h' : 'm/s' }</div>
+          <div data-testid="precipitation"><span className="details">Precipitation:</span> {(precipitation * 100).toFixed(0)}%</div>
+          <div data-testid="humidity"><span className="details">Humidity:</span> {humidity}%</div>
+          <div data-testid="wind"><span className="details">Wind:</span> {wind}{ units === 'imperial' ? 'm/h' : 'm/s' }</div>
         </div>
 
       </div>

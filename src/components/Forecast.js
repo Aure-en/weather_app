@@ -9,7 +9,7 @@ function Forecast({ city, country, countryCode, lat, lng, getWeather }) {
   const [data, setData] = useState({})
   // Units can be imperial (Fahrenheit, m/h) or metric (Celsius, m/s)
   const [display, setDisplay] = useState({})
-  const [units, setUnits] = useState('imperial')
+  const [units, setUnits] = useState('metric')
 
   const changeUnits = (units) => {
     setUnits(units)
@@ -17,15 +17,17 @@ function Forecast({ city, country, countryCode, lat, lng, getWeather }) {
 
   useEffect(() => {
     if (!city) return
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&units=${units}&appid=${keys.openWeatherMap}`)
-      .then(response => response.json())
-      .then(response => {
-        console.log(response)
-        setData(response)
-        setDisplay(response.hourly[0])
-        getWeather(response.hourly[0])
-      })
-      .catch(error => console.log(error))
+    (async () => {
+      try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&units=${units}&appid=${keys.openWeatherMap}`);
+        const data = await response.json();
+        setData(data);
+        setDisplay(data.hourly[0]);
+        getWeather(data.hourly[0]);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
     }, [city, country, countryCode, lat, lng, units])
 
   return (

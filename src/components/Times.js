@@ -26,6 +26,7 @@ function Times({ setDisplay, data, getWeather }) {
        {
           nextHours.map((hour, index) =>
             <li
+              data-testid={`hourly-${index * 3}`}
               key={`hourly-${index * 3}`}
               id={`hourly-${index * 3}`}
               onClick={(
@@ -34,7 +35,10 @@ function Times({ setDisplay, data, getWeather }) {
                   getWeather(data.hourly[index * 3])
                 }          
               )}>
-                <TimesBtn timeProp={hour} type="hour" />
+                <TimesBtn
+                  timeProp={hour}
+                  type="hour"
+                />
             </li>)
         }
       </ul>
@@ -43,6 +47,7 @@ function Times({ setDisplay, data, getWeather }) {
         {
           nextDays.map(day =>
             <li
+              data-testid={`daily-${day}`}
               key={`daily-${day}`}
               id={`daily-${day}`}
               onClick={(
@@ -51,7 +56,10 @@ function Times({ setDisplay, data, getWeather }) {
                   getWeather(data.daily[day])
                 }
               )}>
-                <TimesBtn timeProp={(now.getDay() + day) % 7} type="date" />
+                <TimesBtn
+                  timeProp={(now.getDay() + day) % 7}
+                  type="date"
+                />
             </li>)
         }
       </ul>
